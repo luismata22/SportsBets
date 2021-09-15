@@ -7,6 +7,7 @@ import { DashboardComponent } from './views/admin/dashboard/dashboard.component'
 import { HorseBetComponent } from './views/admin/horse-bet/horse-bet.component';
 import { ProfileComponent } from './views/admin/profile/profile.component';
 import { LoginComponent } from './views/auth/login/login.component';
+import { RecoveryPasswordComponent } from './views/auth/recovery-password/recovery-password.component';
 import { RegisterComponent } from './views/auth/register/register.component';
 import { IndexComponent } from './views/index/index.component';
 import { BetsComponent } from './views/pages/bets/bets.component';
@@ -31,6 +32,7 @@ const routes: Routes = [
     children: [
       { path: "login", component: LoginComponent },
       { path: "register", component: RegisterComponent },
+      { path: "recovery-password", component: RecoveryPasswordComponent },
       { path: "", redirectTo: "login", pathMatch: "full" },
     ],
   },

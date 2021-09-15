@@ -29,6 +29,11 @@ import { IndexDropdownComponent } from './components/dropdowns/index-dropdown/in
 import { MainComponent } from './layouts/main/main.component';
 import { BetsComponent } from './views/pages/bets/bets.component';
 import { BarTopComponent } from './views/pages/bets/bar-top/bar-top.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { RecoveryPasswordComponent } from './views/auth/recovery-password/recovery-password.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -58,11 +63,16 @@ import { BarTopComponent } from './views/pages/bets/bar-top/bar-top.component';
     BarTopComponent,
     IndexDropdownComponent,
     MainComponent,
-    BetsComponent
+    BetsComponent,
+    RecoveryPasswordComponent
   ],
   imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule,
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
