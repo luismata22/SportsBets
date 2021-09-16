@@ -1,58 +1,56 @@
 <div class="container mx-auto px-4 h-full">
-    <div class="flex content-center items-center justify-center h-full">
-      <div class="w-full lg:w-6/12 px-4">
-        <div
-          class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0"
-        >
-          <div class="rounded-t mb-0 px-6 py-6 border-auth">
-            <div class="text-black text-center mb-3 font-bold">
-                <h3 class="text-black text-lg font-bold">Crear cuenta</h3>
+  <div class="flex content-center items-center justify-center h-full">
+    <div class="w-full lg:w-6/12 px-4">
+      <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0">
+        <div class="rounded-t mb-0 px-6 py-6 border-auth">
+          <div class="text-black text-center mb-3 font-bold">
+            <h3 class="text-black text-lg font-bold">Crear cuenta</h3>
+          </div>
+          <hr class="mt-6 mb-6 border-b-1 border-blueGray-300" />
+          <form (ngSubmit)="registerUser()" #form="ngForm" aria-labelledby="title">
+            <div class="relative w-full mb-3">
+              <label class="block uppercase text-black text-xs font-bold mb-2" htmlFor="grid-password">
+                Nombre
+              </label>
+              <input type="text" [(ngModel)]="dataUser.name" #name="ngModel"
+                name="name" id="input-name" autocomplete="off"
+                class="border-0 px-3 py-3 placeholder-blueGray-300 text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                placeholder="Nombre" />
+                <p class="text-xs text-red-500" *ngIf="submitted == true && dataUser.name == ''">
+                  El nombre es requerido!
+                </p>
             </div>
-            <hr class="mt-6 mb-6 border-b-1 border-blueGray-300" />
-            <form>
-              <div class="relative w-full mb-3">
-                <label
-                  class="block uppercase text-black text-xs font-bold mb-2"
-                  htmlFor="grid-password"
-                >
-                  Nombre
-                </label>
-                <input
-                  type="email"
-                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                  placeholder="Nombre"
-                />
-              </div>
-  
-              <div class="relative w-full mb-3">
-                <label
-                  class="block uppercase text-black text-xs font-bold mb-2"
-                  htmlFor="grid-password"
-                >
+            
+            <div class="relative w-full mb-3">
+              <label class="block uppercase text-black text-xs font-bold mb-2" htmlFor="grid-password">
                 Correo electrónico
-                </label>
-                <input
-                  type="email"
-                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                  placeholder="Correo electrónico"
-                />
-              </div>
-  
-              <div class="relative w-full mb-3">
-                <label
-                  class="block uppercase text-black text-xs font-bold mb-2"
-                  htmlFor="grid-password"
-                >
+              </label>
+              <input type="email" [(ngModel)]="dataUser.email" #email="ngModel"
+                name="username" id="input-email" autocomplete="off" pattern=".+@.+\..+"
+                class="border-0 px-3 py-3 placeholder-blueGray-300 text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                placeholder="Correo electrónico" />
+                <ng-container *ngIf="email.invalid && email.touched">
+                  <p class="text-xs text-red-500" *ngIf="email.errors?.pattern">
+                    El correo electrónico debe ser real!
+                  </p>
+                </ng-container>
+                <p class="text-xs text-red-500" *ngIf="submitted == true && dataUser.email == ''">
+                  El correo electrónico es requerido!
+                </p>
+            </div>
+            
+            <div class="relative w-full mb-3">
+              <label class="block uppercase text-black text-xs font-bold mb-2" htmlFor="grid-password">
                 Contraseña
-                </label>
-                <input
-                  type="password"
-                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                  placeholder="Contraseña"
-                />
-              </div>
-  
-              <!-- <div>
+              </label>
+              <input [(ngModel)]="dataUser.password" #password="ngModel" name="password" type="password"
+                class="border-0 px-3 py-3 placeholder-blueGray-300 text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                placeholder="Contraseña" />
+                <p class="text-xs text-red-500" *ngIf="submitted == true && dataUser.password == ''">
+                  La contraseña es requerida!
+                </p>
+            </div>
+            <div>
                 <label class="inline-flex items-center cursor-pointer">
                   <input
                     id="customCheckLogin"
@@ -60,26 +58,25 @@
                     class="form-checkbox border-0 text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150 rounded"
                   />
                   <span class="ml-2 text-sm font-semibold text-blueGray-600">
-                    I agree with the
+                    Acepto las
                     <a href="javascript:void(0)" class="text-red-600">
-                      Privacy Policy
+                      políticas de privacidad
                     </a>
                   </span>
                 </label>
-              </div> -->
-  
-              <div class="text-center mt-6">
-                <button
-                  class="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
-                  type="button"
-                >
-                  Crear cuenta
-                </button>
               </div>
-            </form>
-          </div>
+
+            <div class="text-center mt-6">
+              <button
+                [disabled]="submitted || !form.valid" [class.btn-pulse]="submitted"
+                class="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                >
+                Crear cuenta
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
-  
+</div>
