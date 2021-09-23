@@ -1,0 +1,16 @@
+<div class="flex flex-wrap">
+    <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+        <div class="rounded-t mb-0 px-4 py-3 border-0">
+            <div class="flex flex-wrap items-center">
+              <div class="relative w-full px-3 max-w-full flex-grow flex-1">
+                <h3
+                  class="font-semibold text-lg"
+                >
+                  Lista de usuarios
+                </h3>
+              </div>
+            </div>
+          </div>
+        <app-card-table [columns]="columns" [data]="listData" (edit)="edit($event)"></app-card-table>
+    </div>
+</div>

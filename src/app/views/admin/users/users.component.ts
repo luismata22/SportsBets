@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  selector: 'app-users',
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class UsersComponent implements OnInit {
 
-  openTab = 1;
-  showModal = false;
   columns: any[] = [{
     title: 'Nombre',
     data: 'id'
@@ -33,18 +31,10 @@ export class ProfileComponent implements OnInit {
     firstName: "eqweqw",
     lastName: "Mata"
   }];
-  
+
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  toggleTabs($tabNumber: number){
-    this.openTab = $tabNumber;
-  }
-  
-  toggleModal(){
-    this.showModal = !this.showModal;
   }
 
   edit(data){
