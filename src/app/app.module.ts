@@ -34,6 +34,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RecoveryPasswordComponent } from './views/auth/recovery-password/recovery-password.component';
 import { RouterModule } from '@angular/router';
+import { DetailBetsComponent } from './views/pages/detail-bets/detail-bets.component';
+import { DataTablesModule } from 'angular-datatables';
+import { UsersComponent } from './views/admin/users/users.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +67,9 @@ import { RouterModule } from '@angular/router';
     IndexDropdownComponent,
     MainComponent,
     BetsComponent,
-    RecoveryPasswordComponent
+    RecoveryPasswordComponent,
+    DetailBetsComponent,
+    UsersComponent
   ],
   imports: [
     CommonModule,
@@ -73,6 +78,7 @@ import { RouterModule } from '@angular/router';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    DataTablesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

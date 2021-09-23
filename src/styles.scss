@@ -37,3 +37,24 @@
 .p-6 {
     padding: 1.5rem;
 }
+
+.dataTables_info, .dataTables_length, .paginate_button, .dataTables_filter{
+    font-weight: 400;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+}
+
+.paginate_button.current{
+    background: #d1d804 100%!important;
+    --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.dataTables_wrapper .dataTables_filter input{
+    --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.dataTables_length{
+    margin-bottom: 10px;
+}

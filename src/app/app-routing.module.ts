@@ -6,11 +6,13 @@ import { MainComponent } from './layouts/main/main.component';
 import { DashboardComponent } from './views/admin/dashboard/dashboard.component';
 import { HorseBetComponent } from './views/admin/horse-bet/horse-bet.component';
 import { ProfileComponent } from './views/admin/profile/profile.component';
+import { UsersComponent } from './views/admin/users/users.component';
 import { LoginComponent } from './views/auth/login/login.component';
 import { RecoveryPasswordComponent } from './views/auth/recovery-password/recovery-password.component';
 import { RegisterComponent } from './views/auth/register/register.component';
 import { IndexComponent } from './views/index/index.component';
 import { BetsComponent } from './views/pages/bets/bets.component';
+import { DetailBetsComponent } from './views/pages/detail-bets/detail-bets.component';
 
 const routes: Routes = [
   // admin views
@@ -19,9 +21,9 @@ const routes: Routes = [
     component: AdminComponent,
     children: [
       { path: "dashboard", component: DashboardComponent },
-      // { path: "settings", component: SettingsComponent },
       { path: "horse-bet", component: HorseBetComponent },
       { path: "profile", component: ProfileComponent },
+      { path: "users", component: UsersComponent },
       { path: "", redirectTo: "dashboard", pathMatch: "full" },
     ],
   },
@@ -45,6 +47,7 @@ const routes: Routes = [
     children:[
       { path: "", component: IndexComponent },
       { path: "bets", component: BetsComponent },
+      { path: "detail-bets/:id", component: DetailBetsComponent },
       { path: "profile", component: ProfileComponent },
     ]
   },
