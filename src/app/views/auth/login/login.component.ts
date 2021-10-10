@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
@@ -23,13 +24,13 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private _authService: AuthenticationService,
-    private router: Router,) { }
+    private router: Router,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
 
   login() {
-    debugger;
     this.submitted = true;
     var objectRequest =
     {
@@ -41,26 +42,31 @@ export class LoginComponent implements OnInit {
     this._authService.login(objectRequest)
       .subscribe(
         (resp: any) => {
-          this.userLogined = resp;
+          if (resp != null) {
+            this.userLogined = resp;
             //this.mapCodes();
             this._authService.setCurrentUser(resp);
             //this._authService.saveToken(resp.bearerToken);
             this.userLogged = resp.userInfo;
-            this._authService.setCurrentUser(resp);
             this.user.email = '';
             this.user.password = '';
-            this.submitted = false;
-            this.router.navigate(["admin/dashboard"]);
+            this.toastr.success('Bienvenid@.', 'Autenticación exitosa',{
+              timeOut: 3000,
+            });
+            this.router.navigate(["pages/dashboard"]);
+          }else{
+            this.toastr.error('Usuario o contraseña incorrectos.', 'Autenticación inválida',{
+              timeOut: 3000,
+            });
+          }
+          this.submitted = false;
         },
         error => {
           const errorMessage = <any>error;
           if (errorMessage != null) {
-            //this.generalFunctionsService.notifications('Usuario no válido, verifique sus credenciales', 'danger');
-
+            //this.generalFunctionsService.notifications('Usuario no válido, verifique sus credenciales', 'danger');\
           }
-
           this.submitted = false;
-
         }
       );
   }

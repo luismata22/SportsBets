@@ -78,14 +78,14 @@
                     <i class="fas fa-money-bill text-base mr-1"></i> Métodos de pago
                   </a>
                 </li>
-                <li class="-mb-px mr-2 last:mr-0 flex-auto text-center z-50">
+                <li class="-mb-px mr-2 last:mr-0 flex-auto text-center z-3">
                   <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal cursor-pointer"
                     (click)="toggleTabs(3)"
                     [ngClass]="{'text-red-600 bg-white': openTab !== 3, 'text-black bg-bets': openTab === 3}">
                     <i class="fas fa-envelope text-base mr-1"></i> Mensajes (0)
                   </a>
                 </li>
-                <li class="-mb-px mr-2 last:mr-0 flex-auto text-center z-50">
+                <li class="-mb-px mr-2 last:mr-0 flex-auto text-center z-3">
                   <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal cursor-pointer"
                     (click)="toggleTabs(4)"
                     [ngClass]="{'text-red-600 bg-white': openTab !== 4, 'text-black bg-bets': openTab === 4}">
@@ -171,8 +171,8 @@
       <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
         <!--header-->
         <div class="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
-          <h3 class="text-3xl font-semibold">
-            Modal Title
+          <h3 class="text-xl font-semibold">
+            Deposito
           </h3>
           <button class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" (click)="toggleModal()">
             <span class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
@@ -182,21 +182,22 @@
         </div>
         <!--body-->
         <div class="relative p-6 flex-auto">
-          <p class="my-4 text-blueGray-500 text-lg leading-relaxed">
-            I always felt like I could do anything. That’s the main
-            thing people are controlled by! Thoughts- their perception
-            of themselves! They're slowed down by their perception of
-            themselves. If you're taught you can’t do anything, you
-            won’t do anything. I was taught I could do everything.
-          </p>
+          <div class="relative w-full mb-3">
+            <label class="block uppercase text-black text-xs font-bold mb-2" htmlFor="grid-password">
+              Depósito
+            </label>
+            <input name="password" type="password"
+              class="border-0 px-3 py-3 placeholder-blueGray-300 text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+              placeholder="Contraseña" />
+          </div>
         </div>
         <!--footer-->
         <div class="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
           <button class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="toggleModal()">
-            Close
+            Cerrar
           </button>
-          <button class="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="toggleModal()">
-            Save Changes
+          <button class="bg-bets text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="toggleModal()">
+            Guardar
           </button>
         </div>
       </div>

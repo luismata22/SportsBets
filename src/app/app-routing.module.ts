@@ -1,32 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminComponent } from './layouts/admin/admin.component';
 import { AuthComponent } from './layouts/auth/auth.component';
+import { IndexComponent } from './layouts/index/index.component';
 import { MainComponent } from './layouts/main/main.component';
-import { DashboardComponent } from './views/admin/dashboard/dashboard.component';
-import { HorseBetComponent } from './views/admin/horse-bet/horse-bet.component';
-import { ProfileComponent } from './views/admin/profile/profile.component';
-import { UsersComponent } from './views/admin/users/users.component';
+import { DashboardComponent } from './views/pages/dashboard/dashboard.component';
+import { HorseBetComponent } from './views/pages/horse-bet/horse-bet.component';
+import { ProfileComponent } from './views/pages/profile/profile.component';
+import { UsersComponent } from './views/pages/users/users.component';
 import { LoginComponent } from './views/auth/login/login.component';
 import { RecoveryPasswordComponent } from './views/auth/recovery-password/recovery-password.component';
 import { RegisterComponent } from './views/auth/register/register.component';
-import { IndexComponent } from './views/index/index.component';
-import { BetsComponent } from './views/pages/bets/bets.component';
+import { LandingComponent } from './views/landing/landing.component';
 import { DetailBetsComponent } from './views/pages/detail-bets/detail-bets.component';
 
 const routes: Routes = [
-  // admin views
-   {
-    path: "admin",
-    component: AdminComponent,
-    children: [
-      { path: "dashboard", component: DashboardComponent },
-      { path: "horse-bet", component: HorseBetComponent },
-      { path: "profile", component: ProfileComponent },
-      { path: "users", component: UsersComponent },
-      { path: "", redirectTo: "dashboard", pathMatch: "full" },
-    ],
-  },
   // auth views
   {
     path: "auth",
@@ -38,17 +25,24 @@ const routes: Routes = [
       { path: "", redirectTo: "login", pathMatch: "full" },
     ],
   },
-  // no layout views
-  // { path: "profile", component: ProfileComponent },
-  // { path: "landing", component: LandingComponent }, */
+  // admin views
+   {
+    path: "pages",
+    component: MainComponent,
+    children: [
+      { path: "dashboard", component: DashboardComponent },
+      { path: "horse-bet", component: HorseBetComponent },
+      { path: "profile", component: ProfileComponent },
+      { path: "users", component: UsersComponent },
+      { path: "detail-bets/:id", component: DetailBetsComponent },
+      { path: "", redirectTo: "dashboard", pathMatch: "full" },
+    ],
+  },
   { 
     path: "", 
-    component: MainComponent,
+    component: IndexComponent,
     children:[
-      { path: "", component: IndexComponent },
-      { path: "bets", component: BetsComponent },
-      { path: "detail-bets/:id", component: DetailBetsComponent },
-      { path: "profile", component: ProfileComponent },
+      { path: "", component: LandingComponent }
     ]
   },
   //{ path: "**", redirectTo: "", pathMatch: "full" },

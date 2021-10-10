@@ -1,0 +1,22 @@
+{
+    "Menu": [
+      {
+        "id": "b1",
+        "name": "Café americano",
+        "price": 5,
+        "count": 1,
+        "type": "breakfast",
+        "subType": "",
+        "image": "/assets/images/coffee.png"
+      },
+      {
+        "id": "b2",
+        "name": "Café con leche",
+        "price": 7,
+        "count": 1,
+        "type": "breakfast",
+        "subType": "",
+        "image": "/assets/images/latte.png"
+      }
+    ]
+}

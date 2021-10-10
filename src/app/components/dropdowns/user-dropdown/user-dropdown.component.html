@@ -9,14 +9,14 @@
 <div class="min-w-48 z-50" #popoverDropdownRef>
   <div class="bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg mt-1 min-w-48"
     [ngClass]="dropdownPopoverShow ? 'block' : 'hidden'">
-    <a href="/admin/profile"
+    <a href="/pages/profile"
       class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">
-      Perfil
+      <b>{{userLogged == null ? '' : userLogged.fullName}}</b>
     </a>
     <div class="h-0 my-2 border border-solid border-blueGray-100"></div>
-    <a href="/auth/login"
-      class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">
+    <div (click)="logout()"
+      class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 cursor-pointer">
       Cerrar sesión
-    </a>
+  </div>
   </div>
 </div>
