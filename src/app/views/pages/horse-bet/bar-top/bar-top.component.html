@@ -1,41 +1,36 @@
 <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
     <div class="px-4 py-5 flex-auto">
       <div class="flex flex-wrap">
-        <div class="w-full lg:w-4/12 px-4">
-          <div class="text-sm leading-3 text-gray-700 font-bold w-full">Indiana Grand</div>
-          <div class="text-xs text-gray-600 w-full">Siguiente carrera en 0 mins</div>
-        </div>
-  
-        <div class="w-full lg:w-4/12 px-4 text-center">
-          <span
-            class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-white bg-blueGray-600 uppercase last:mr-0 mr-1">
-            1
-          </span>
-          <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-black bg-red-500 uppercase last:mr-0 mr-1">
-              2
-            </span>
-            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-black bg-red-500 uppercase last:mr-0 mr-1">
-              3
-            </span>
-            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-black bg-red-500 uppercase last:mr-0 mr-1">
-              4
-            </span>
-        </div>
-        <div class="w-full lg:w-4/12 px-4">
-  
+        <div class="w-full lg:w-12/12 px-4">
+          <div class="text-sm leading-3 text-gray-700 font-bold w-full">APOSTAR TICKET</div>
         </div>
       </div>
-      <div class="h-0 my-2 border border-solid border-blueGray-100"></div>
-      <div class="flex flex-wrap">
-        <div class="w-full lg:w-4/12 px-4 text-center">
-          <div class="text-sm leading-3 text-gray-700 font-bold w-full">Hoy</div>
+      <div class="flex flex-wrap mt-4">
+        <div class="w-full lg:w-3/12 px-4">
+          <div class="text-sm leading-3 text-gray-700 w-full">PAÍS</div>
+          <select class="border-0 px-3 py-3 placeholder-blueGray-300 text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+          placeholder="Seleccione...">
+            <option *ngFor="let country of countriesList">{{country.name}}</option>
+          </select>
+        </div>
+        <div class="w-full lg:w-3/12 px-4">
+          <div class="text-sm leading-3 text-gray-700 w-full">HIPODROMO</div>
+          <select class="border-0 px-3 py-3 placeholder-blueGray-300 text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+          placeholder="Seleccione...">
+          </select>
         </div>
   
-        <div class="w-full lg:w-4/12 px-4 text-center">
-          <div class="text-sm leading-3 text-gray-700 font-bold w-full">Ganados: $</div>
+        <div class="w-full lg:w-3/12 px-4">
+          <div class="text-sm leading-3 text-gray-700 w-full">TIPO DE APUESTA</div>
+          <select class="border-0 px-3 py-3 placeholder-blueGray-300 text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+          placeholder="Seleccione...">
+          </select>
         </div>
-        <div class="w-full lg:w-4/12 px-4 text-center">
-          <div class="text-sm leading-3 text-gray-700 font-bold w-full">Apuesta: $</div>
+        <div class="w-full lg:w-3/12 px-4">
+          <div class="text-sm leading-3 text-gray-700 w-full">UNIDADES</div>
+          <input type="text"
+          name="name" id="input-name" autocomplete="off"
+          class="border-0 px-3 py-3 placeholder-blueGray-300 text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"/>
         </div>
       </div>
     </div>

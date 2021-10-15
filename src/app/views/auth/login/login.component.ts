@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { GeneralFunctionsService } from 'src/app/services/general-functions.service';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private _authService: AuthenticationService,
     private router: Router,
-    private toastr: ToastrService) { }
+    private generalFunctionsService: GeneralFunctionsService) { }
 
   ngOnInit(): void {
   }
@@ -50,14 +51,10 @@ export class LoginComponent implements OnInit {
             this.userLogged = resp.userInfo;
             this.user.email = '';
             this.user.password = '';
-            this.toastr.success('Bienvenid@.', 'Autenticación exitosa',{
-              timeOut: 3000,
-            });
+            this.generalFunctionsService.notifications('Bienvenid@.', 'Autenticación exitosa', 'success');
             this.router.navigate(["pages/dashboard"]);
           }else{
-            this.toastr.error('Usuario o contraseña incorrectos.', 'Autenticación inválida',{
-              timeOut: 3000,
-            });
+            this.generalFunctionsService.notifications('Usuario o contraseña incorrectos.', 'Autenticación inválida', 'error');
           }
           this.submitted = false;
         },

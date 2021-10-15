@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-profile',
@@ -33,10 +34,12 @@ export class ProfileComponent implements OnInit {
     firstName: "eqweqw",
     lastName: "Mata"
   }];
+  userLogged: any;
   
-  constructor() { }
+  constructor(private authService: AuthenticationService,) { }
 
   ngOnInit(): void {
+    this.userLogged = this.authService.storeUser;
   }
 
   toggleTabs($tabNumber: number){

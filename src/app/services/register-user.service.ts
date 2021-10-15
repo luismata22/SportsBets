@@ -8,10 +8,14 @@ import { environment } from 'src/environments/environment';
 export class RegisterUserService {
 
   private server: string = environment.API_URL; //This variables is from enviroment.ts
+  public currentUser: any;
+  private services = {
+    register: this.server + "api/register-user",
+  };
 
   constructor(private http: HttpClient) { }
 
-  saveUser(data) {
-    return this.http.post(this.server+"/register-user", data);
+  registerUser(data) {
+    return this.http.post(this.services.register, data);
   }
 }

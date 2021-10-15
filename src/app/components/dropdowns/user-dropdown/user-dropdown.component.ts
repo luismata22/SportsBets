@@ -30,7 +30,6 @@ export class UserDropdownComponent implements AfterViewInit {
       }
     );
     this.userLogged = this.authService.storeUser;
-    console.log(this.userLogged);
   }
   toggleDropdown(event) {
     event.preventDefault();
