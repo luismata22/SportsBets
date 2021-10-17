@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API_URL: "http://vgs.test/",
+  API_URL: "http://admin.vgs.goldteam.co/",
 };
 
 /*
