@@ -17,6 +17,7 @@ export class AuthenticationService {
   private readonly ACCESS_STATE = '_ACCESS_STATE';
   private server: string = environment.API_URL; //This variables is from enviroment.ts
   public currentUser: any;
+  private readonly apikey = "Y25lpigIn2o/Ppdl3h8Uxe4fLdm06cVmQwslr9S5SfDx";
   private services = {
     login: this.server + "api/login",
     logout: this.server + "api/logout",
@@ -26,11 +27,19 @@ export class AuthenticationService {
     private http: HttpClient) { }
 
   login( data ) {
-    return this.http.get(this.services.login + "/" + data.username + "/" + data.password);
+    //data.apikey = this.apikey;
+    return this.http.post(this.services.login,data);
   }
 
   logout() {
     return this.http.get(this.services.logout)
+  }
+
+  signin(){
+    let params: HttpParams = new HttpParams();
+    params = params.append("accion", "signin");
+    params = params.append("apikey", this.apikey);
+    return this.http.post(this.server, params)
   }
 
   resetPassword(data) {

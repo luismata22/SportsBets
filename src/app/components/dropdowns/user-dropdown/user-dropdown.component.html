@@ -1,22 +1,40 @@
-<a class="text-blueGray-500 block" href="#pablo" (click)="toggleDropdown($event)" #btnDropdownRef>
-  <div class="items-center flex">
-    <span class="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full">
-      <img alt="..." class="w-full rounded-full align-middle border-none shadow-lg"
-        src="assets/img/team-1-800x800.jpg" />
-    </span>
-  </div>
-</a>
-<div class="min-w-48 z-50" #popoverDropdownRef>
-  <div class="bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg mt-1 min-w-48"
-    [ngClass]="dropdownPopoverShow ? 'block' : 'hidden'">
-    <a href="/pages/profile"
-      class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">
-      <b>{{userLogged == null ? '' : userLogged.fullName}}</b>
-    </a>
-    <div class="h-0 my-2 border border-solid border-blueGray-100"></div>
-    <div (click)="logout()"
-      class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 cursor-pointer">
-      Cerrar sesión
-  </div>
+<div *ngIf="(userLogged | json) != '{}'">
+  <a class="text-blueGray-500 block" href="#pablo" (click)="toggleDropdown($event)" #btnDropdownRef>
+    <div class="items-center flex">
+      <span class="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full">
+        <img alt="..." class="w-full rounded-full align-middle border-none shadow-lg"
+          src="assets/img/team-1-800x800.jpg" />
+      </span>
+    </div>
+  </a>
+  <div class="min-w-48 z-50" #popoverDropdownRef>
+    <div class="bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg mt-1 min-w-48"
+      [ngClass]="dropdownPopoverShow ? 'block' : 'hidden'">
+      <div>
+        <a href="/pages/profile"
+          class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">
+          <b>{{userLogged == null ? '' : userLogged.fullName}}</b>
+        </a>
+        <div class="h-0 my-2 border border-solid border-blueGray-100"></div>
+        <div (click)="logout()"
+          class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 cursor-pointer">
+          Cerrar sesión
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+<ul class="flex flex-col lg:flex-row list-none lg:ml-auto" *ngIf="(userLogged | json) == '{}'">
+  <li class="flex items-center">
+    <a class="button-primary-bets text-black active:button-primary-bets text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+      routerLink="/auth/login">
+      <i class="fas fa-sign-in-alt"></i> Iniciar sesión
+    </a>
+  </li>
+  <li class="flex items-center">
+    <a class="button-secondary-bets text-black active:button-secondary-bets text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+    routerLink="/auth/register">
+      <i class="fas fa-user-plus"></i> Registrarse
+    </a>
+  </li>
+</ul>

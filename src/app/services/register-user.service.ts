@@ -10,7 +10,7 @@ export class RegisterUserService {
   private server: string = environment.API_URL; //This variables is from enviroment.ts
   public currentUser: any;
   private services = {
-    register: this.server + "api/register-user",
+    register: this.server + "api/register",
   };
 
   constructor(private http: HttpClient) { }

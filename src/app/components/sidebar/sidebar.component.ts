@@ -10,10 +10,15 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class SidebarComponent implements OnInit {
 
   collapseShow = "hidden";
+  userLogged: any;
+  
   constructor(private authService: AuthenticationService,
     private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.userLogged = this.authService.storeUser;
+  }
+
   toggleCollapseShow(classes: string) {
     this.collapseShow = classes;
   }

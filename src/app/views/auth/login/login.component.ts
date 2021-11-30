@@ -15,7 +15,8 @@ export class LoginComponent implements OnInit {
   submitted: boolean;
   public userLogined: any;
   public userLogged: any;
-
+  private readonly apikey = "Y25lpigIn2o/Ppdl3h8Uxe4fLdm06cVmQwslr9S5SfDx";
+  
   public user =
     {
       email: localStorage.getItem('email') || "", //admin@correo.com
@@ -36,7 +37,8 @@ export class LoginComponent implements OnInit {
     var objectRequest =
     {
       "username": this.user.email,
-      "password": this.user.password
+      "password": this.user.password,
+      "apikey": this.apikey
     }
 
     // TODO: change when backend was ready
