@@ -78,7 +78,7 @@ export class BetsService {
   charge(agentId: number, zoneId: number, classId: number, raceCourseId: number, fecha: string){
     let params: HttpParams = new HttpParams();
     params = params.append("accion", "carga");
-    params = params.append("fecha", fecha.toString());
+    params = params.append("fecha", "2021-11-30");
     params = params.append("zone", zoneId.toString());
     params = params.append("clase", classId.toString());
     params = params.append("hipo", raceCourseId.toString());

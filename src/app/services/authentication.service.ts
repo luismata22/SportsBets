@@ -27,12 +27,17 @@ export class AuthenticationService {
     private http: HttpClient) { }
 
   login( data ) {
-    //data.apikey = this.apikey;
-    return this.http.post(this.services.login,data);
+    let params: HttpParams = new HttpParams();
+    params = params.append("accion", "login");
+    params = params.append("username", data.username);
+    params = params.append("password", data.password);
+    return this.http.post(this.server, params);
   }
 
   logout() {
-    return this.http.get(this.services.logout)
+    let params: HttpParams = new HttpParams();
+    params = params.append("accion", "logout");
+    return this.http.post(this.server, params)
   }
 
   signin(){

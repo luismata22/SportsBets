@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Country } from 'src/app/models/bets/country';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { BetsService } from 'src/app/services/bets.service';
 
 @Component({
@@ -14,13 +15,16 @@ export class BarTopComponent implements OnInit {
   @Input("classList") classList: any[];
   @Input("wagerList") wagerList: any[];
   @Input("raceCourseList") raceCourseList: any[];
+  @Input("oddSelectedList") oddSelectedList: any[];
 
   zoneSelected: number = 0;
   classSelected: number = 0;
   raceCourseSelected: number = 0;
   wagerSelected: number = 0;
   fechaSelected: string = "Todos";
-  constructor(private betsService: BetsService) { }
+  showModal = false;
+  constructor(private betsService: BetsService,
+    private authService: AuthenticationService) { }
 
   ngOnInit(): void {
   }
@@ -43,5 +47,14 @@ export class BarTopComponent implements OnInit {
         }
       }
     );
+  }
+
+  toggleModal(){
+    this.showModal = !this.showModal;
+  }
+
+  save(){
+    console.log(this.authService.storeUser)
+    console.log(this.oddSelectedList)
   }
 }
