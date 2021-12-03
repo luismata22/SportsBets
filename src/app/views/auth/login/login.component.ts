@@ -16,7 +16,8 @@ export class LoginComponent implements OnInit {
   public userLogined: any;
   public userLogged: any;
   private readonly apikey = "Y25lpigIn2o/Ppdl3h8Uxe4fLdm06cVmQwslr9S5SfDx";
-  
+  agentId: number = 0;
+
   public user =
     {
       email: localStorage.getItem('email') || "", //admin@correo.com
@@ -30,12 +31,28 @@ export class LoginComponent implements OnInit {
     private generalFunctionsService: GeneralFunctionsService) { }
 
   ngOnInit(): void {
+    this._authService.signin()
+      .subscribe(
+        (resp: any) => {
+          console.log(resp);
+          if (resp.success == true) {
+            this.agentId = resp.agent_id;
+          }
+        },
+        error => {
+          const errorMessage = <any>error;
+          if (errorMessage != null) {
+            //this.generalFunctionsService.notifications('Usuario no válido, verifique sus credenciales', 'danger');\
+          }
+        }
+      );
   }
 
   login() {
     this.submitted = true;
     var objectRequest =
     {
+      "agentId": this.agentId,
       "username": this.user.email,
       "password": this.user.password,
       "apikey": this.apikey
@@ -45,17 +62,18 @@ export class LoginComponent implements OnInit {
     this._authService.login(objectRequest)
       .subscribe(
         (resp: any) => {
-          if (resp != null) {
-            this.userLogined = resp;
+          debugger;
+          if (resp != null && resp.success == true) {
+            this.userLogined = resp.client;
             //this.mapCodes();
-            this._authService.setCurrentUser(resp);
+            this._authService.setCurrentUser(resp.client);
             //this._authService.saveToken(resp.bearerToken);
-            this.userLogged = resp.userInfo;
+            this.userLogged = resp.client;
             this.user.email = '';
             this.user.password = '';
             this.generalFunctionsService.notifications('Bienvenid@.', 'Autenticación exitosa', 'success');
-            this.router.navigate(["pages/dashboard"]);
-          }else{
+            this.router.navigate(["pages/horse-bet"]);
+          } else {
             this.generalFunctionsService.notifications('Usuario o contraseña incorrectos.', 'Autenticación inválida', 'error');
           }
           this.submitted = false;

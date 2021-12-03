@@ -1,5 +1,5 @@
 <app-bar-top [zonesList]="zonesList" [classList]="classList" [raceCourseList]="raceCourseList"
-[raceCourseList]="raceCourseList" [wagerList]="wagerList" [agentId]="agentId" [oddSelectedList]="oddSelectedList"></app-bar-top>
+[raceCourseList]="raceCourseList" [wagerList]="wagerList" [agentId]="agentId"></app-bar-top>
 <div class="flex flex-wrap">
   <div class="w-full">
     <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
@@ -25,7 +25,7 @@
                 </div>
               </div>
               <div class="flex flex-col">
-                <input id="customCheckLogin" type="checkbox" name="rememberMe" (change)="changeSelected(odd, $event)"
+                <input id="customCheckLogin" [(ngModel)]="odd.checked" type="checkbox" name="rememberMe" (change)="changeSelected(odd, $event)"
                 class="form-checkbox border-2 text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150 rounded" />
               </div>
             </div>

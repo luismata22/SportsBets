@@ -10,7 +10,7 @@
         <div class="text-sm leading-3 text-gray-700 w-full">Zonas</div>
         <select
           class="border-0 px-3 py-3 placeholder-blueGray-300 text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-          placeholder="Seleccione..." [(ngModel)]="zoneSelected" (change)="change()">
+          placeholder="Seleccione..." [(ngModel)]="betsService.zoneSelected" (change)="change()">
           <option [value]="0" selected>Todos</option>
           <option *ngFor="let zone of zonesList" [value]="zone.id">{{zone.name}}</option>
         </select>
@@ -19,7 +19,7 @@
         <div class="text-sm leading-3 text-gray-700 w-full">Clases</div>
         <select
           class="border-0 px-3 py-3 placeholder-blueGray-300 text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-          placeholder="Seleccione..." [(ngModel)]="classSelected" (change)="change()">
+          placeholder="Seleccione..." [(ngModel)]="betsService.classSelected" (change)="change()">
           <option [value]="0" selected>Todos</option>
           <option *ngFor="let class of classList" [value]="class.id">{{class.name}}</option>
         </select>
@@ -28,7 +28,7 @@
         <div class="text-sm leading-3 text-gray-700 w-full">Hipódromos</div>
         <select
           class="border-0 px-3 py-3 placeholder-blueGray-300 text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-          placeholder="Seleccione..." [(ngModel)]="raceCourseSelected" (change)="change()">
+          placeholder="Seleccione..." [(ngModel)]="betsService.raceCourseSelected" (change)="change()">
           <option [value]="0" selected>Todos</option>
           <option *ngFor="let raceCourse of raceCourseList" [value]="raceCourse.id">{{raceCourse.name}}</option>
         </select>
@@ -38,7 +38,7 @@
         <div class="text-sm leading-3 text-gray-700 w-full">TIPO DE APUESTA</div>
         <select
           class="border-0 px-3 py-3 placeholder-blueGray-300 text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-          placeholder="Seleccione..." [(ngModel)]="wagerSelected">
+          placeholder="Seleccione..." [(ngModel)]="betsService.wagerSelected">
           <option [value]="0" selected>Todos</option>
           <option *ngFor="let wager of wagerList" [value]="wager.id">{{wager.name}}</option>
         </select>
@@ -48,14 +48,14 @@
         <div class="text-sm leading-3 text-gray-700 w-full">Fecha</div>
         <select
           class="border-0 px-3 py-3 placeholder-blueGray-300 text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-          placeholder="Seleccione..." [(ngModel)]="fechaSelected" (change)="change()">
+          placeholder="Seleccione..." [(ngModel)]="betsService.fechaSelected" (change)="change()">
           <option [value]="'Todos'" selected>Todos</option>
           <option [value]="'Hoy'" selected>Hoy</option>
           <option [value]="'Mañana'" selected>Mañana</option>
         </select>
       </div>
       <div class="w-full lg:w-9/12 px-4" style="text-align: right;">
-        <button style="margin-top: 28px;" *ngIf="oddSelectedList.length > 0"
+        <button style="margin-top: 28px;" *ngIf="betsService.oddSelectedList.length > 0"
           class="button-primary-bets text-white active:bg-red-600 uppercase font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
           type="button" (click)="toggleModal()">
           Ver apuesta
@@ -70,7 +70,7 @@
     </div>
   </div>
 </div>
-<div *ngIf="showModal"
+<div *ngIf="betsService.showModal"
   class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
   <div class="relative w-auto my-6 mx-auto max-w-3xl">
     <!--content-->
@@ -92,7 +92,7 @@
       <div class="relative p-6 flex-auto">
         <div
           class="flex items-center mb-1 mt-3 justify-between w-full p-2 lg:rounded-full md:rounded-full hover:bg-gray-100 cursor-pointer border-2 rounded-lg"
-          *ngFor="let odd of oddSelectedList">
+          *ngFor="let odd of betsService.oddSelectedList">
           <div class="lg:flex md:flex items-center" style="margin-right: 4rem">
             <div class="flex flex-col">
               <div class="text-sm leading-3 text-gray-700 font-bold w-full">{{odd.name}}</div>
@@ -124,4 +124,4 @@
     </div>
   </div>
 </div>
-<div *ngIf="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
+<div *ngIf="betsService.showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>

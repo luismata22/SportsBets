@@ -29,7 +29,8 @@ export class AuthenticationService {
   login( data ) {
     let params: HttpParams = new HttpParams();
     params = params.append("accion", "login");
-    params = params.append("username", data.username);
+    params = params.append("agent_id", data.agentId);
+    params = params.append("user_name", data.username);
     params = params.append("password", data.password);
     return this.http.post(this.server, params);
   }
@@ -63,7 +64,7 @@ export class AuthenticationService {
       id: data.id,
       token: data.token,
       refreshToken: data.refreshToken,
-      fullName: data.name + ' ' + data.lastName,
+      fullName: data.name,
       email: data.email
     };
     localStorage.setItem(this.REMEMBER_ME, JSON.stringify(data.rememberMe));

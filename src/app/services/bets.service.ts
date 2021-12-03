@@ -20,6 +20,15 @@ export class BetsService {
     boommakers: this.server + "api/boommakers",
     ticket: this.server + "api/saveTicket",
   };
+  zoneSelected: number = 0;
+  classSelected: number = 0;
+  raceCourseSelected: number = 0;
+  wagerSelected: number = 0;
+  fechaSelected: string = "Todos";
+  raceSelected:number= 0;
+  oddSelectedList: any[] = [];
+
+  showModal = false;
   
   constructor(private http: HttpClient) { }
 
@@ -62,32 +71,48 @@ export class BetsService {
   getBoommakers() {
     return this.http.get(this.services.boommakers);
   }
-  
-  saveTicket(data) {
-    return this.http.post(this.services.ticket, data);
-  }
 
-  chargeAgent(agentId: number){
+  chargeAgent(agentId: number, clientId: number){
     let params: HttpParams = new HttpParams();
     params = params.append("accion", "cargar_agente");
     params = params.append("agent_id", agentId.toString());
-    params = params.append("client_id", "0");
+    params = params.append("client_id", clientId.toString());
     return this.http.post(this.server, params)
   }
 
-  charge(agentId: number, zoneId: number, classId: number, raceCourseId: number, fecha: string){
+  charge(agentId: number, clientId: number, zoneId: number, classId: number, raceCourseId: number, raceId: number, fecha: string){
     let params: HttpParams = new HttpParams();
     params = params.append("accion", "carga");
     params = params.append("fecha", "2021-11-30");
     params = params.append("zone", zoneId.toString());
     params = params.append("clase", classId.toString());
     params = params.append("hipo", raceCourseId.toString());
-    params = params.append("race", "0");
-    params = params.append("client_id", "0");
+    params = params.append("race", raceId.toString());
+    params = params.append("client_id", clientId.toString());
     params = params.append("agent_id", agentId.toString());
     params = params.append("zone_id", "0");
     params = params.append("formato", "Decimal");
     params = params.append("buscar", "");
+    return this.http.post(this.server, params)
+  }
+
+  saveBet(agentId: number, clientId: number, oddId: number, betList: any[], total: any){
+    let params: HttpParams = new HttpParams();
+    params = params.append("accion", "agregar_apuesta");
+    params = params.append("agent_id", agentId.toString());
+    params = params.append("client_id", clientId.toString());
+    params = params.append("odd_id", oddId.toString());
+    params = params.append("apuestas", total.toString());
+    params = params.append("apuestas", betList.toString());
+    return this.http.post(this.server, params)
+  }
+
+  saveTicket(agentId: number, clientId: number, oddId: number, betList: any[]){
+    let params: HttpParams = new HttpParams();
+    params = params.append("accion", "agregar_apuesta");
+    params = params.append("agent_id", agentId.toString());
+    params = params.append("client_id", clientId.toString());
+    params = params.append("apuesta", betList.toString());
     return this.http.post(this.server, params)
   }
 }

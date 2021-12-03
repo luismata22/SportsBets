@@ -63,7 +63,7 @@
       <!-- Navigation -->
 
       <ul class="md:flex-col md:min-w-full flex flex-col list-none">
-        <li class="items-center">
+        <!-- <li class="items-center">
           <a [routerLink]="['/pages/dashboard']" class="text-xs uppercase py-3 font-bold block" routerLinkActive
             #adminDashboard="routerLinkActive" [ngClass]="
               adminDashboard.isActive
@@ -76,7 +76,7 @@
             Dashboard
           </a>
         </li>
-
+ -->
         <li class="items-center">
           <a [routerLink]="['/pages/horse-bet']" class="text-xs uppercase py-3 font-bold block" routerLinkActive
             #adminHorseBet="routerLinkActive" [ngClass]="
@@ -87,7 +87,7 @@
             <i class="fas fa-horse mr-2 text-sm" [ngClass]="
             adminHorseBet.isActive ? 'opacity-75' : 'text-blueGray-300'
               "></i>
-            Caballos
+            Apuestas
           </a>
         </li>
       </ul>
