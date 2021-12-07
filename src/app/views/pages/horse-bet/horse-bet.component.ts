@@ -41,6 +41,7 @@ export class HorseBetComponent implements OnInit {
                   this.zonesList = resp1.zones;
                   this.classList = resp1.clases;
                   this.wagerList = resp1.wagers;
+                  this.raceCourseList = resp1.hipodromos;
                   this.charge(resp.agent_id)
                 },
                 error => {
@@ -87,7 +88,7 @@ export class HorseBetComponent implements OnInit {
       .subscribe(
         (resp: any) => {
           console.log(resp);
-          this.raceCourseList = resp.hipodromos;
+          //this.raceCourseList = resp.hipodromos;
           var odds = resp.odds;
           this.races = resp.races;
           //debugger;

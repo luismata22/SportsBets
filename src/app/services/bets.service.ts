@@ -96,14 +96,20 @@ export class BetsService {
     return this.http.post(this.server, params)
   }
 
-  saveBet(agentId: number, clientId: number, oddId: number, betList: any[], total: any){
+  saveBet(agentId: number, clientId: number, oddId: string, wagerId: number, betList: any[]){
     let params: HttpParams = new HttpParams();
     params = params.append("accion", "agregar_apuesta");
     params = params.append("agent_id", agentId.toString());
-    params = params.append("client_id", clientId.toString());
+    //params = params.append("client_id", clientId.toString());
     params = params.append("odd_id", oddId.toString());
-    params = params.append("apuestas", total.toString());
-    params = params.append("apuestas", betList.toString());
+    params = params.append("wager_id", wagerId.toString());
+    //params = params.append("apuestas", total.toString());
+    //params = params.append("apuestas", betList.toString());
+    params = params.append("id", betList[0].id.toString());
+    params = params.append("time", betList[0].time.toString());
+    params = params.append("risk", betList[0].risk.toString());
+    params = params.append("win", betList[0].win.toString());
+    params = params.append("amount", betList[0].amount.toString());
     return this.http.post(this.server, params)
   }
 
