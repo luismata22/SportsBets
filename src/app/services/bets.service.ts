@@ -104,21 +104,30 @@ export class BetsService {
     params = params.append("odd_id", oddId.toString());
     params = params.append("wager_id", wagerId.toString());
     //params = params.append("apuestas", total.toString());
-    //params = params.append("apuestas", betList.toString());
-    params = params.append("id", betList[0].id.toString());
-    params = params.append("time", betList[0].time.toString());
-    params = params.append("risk", betList[0].risk.toString());
-    params = params.append("win", betList[0].win.toString());
-    params = params.append("amount", betList[0].amount.toString());
+    for (let i = 0; i < betList.length; i++) {
+      params = params.append("apuestas["+i+"][id]", betList[i].id.toString());
+      params = params.append("apuestas["+i+"][time]", betList[i].time.toString());
+      params = params.append("apuestas["+i+"][risk]", betList[i].risk.toString());
+      params = params.append("apuestas["+i+"][win]", betList[i].win.toString());
+      params = params.append("apuestas["+i+"][amount]", betList[i].amount.toString());
+    }
     return this.http.post(this.server, params)
   }
 
-  saveTicket(agentId: number, clientId: number, oddId: number, betList: any[]){
+  saveTicket(agentId: number, clientId: number, token: number, betList: any[]){
     let params: HttpParams = new HttpParams();
-    params = params.append("accion", "agregar_apuesta");
+    params = params.append("accion", "guardar_ticket");
     params = params.append("agent_id", agentId.toString());
     params = params.append("client_id", clientId.toString());
-    params = params.append("apuesta", betList.toString());
+    params = params.append("token", token.toString());
+    for (let i = 0; i < betList.length; i++) {
+      params = params.append("apuestas["+i+"][odd_id]", betList[i].odd_id.toString());
+      params = params.append("apuestas["+i+"][us]", betList[i].us.toString());
+      params = params.append("apuestas["+i+"][type]", betList[i].type.toString());
+      params = params.append("apuestas["+i+"][risk]", betList[i].risk.toString());
+      params = params.append("apuestas["+i+"][value]", betList[i].value.toString());
+      params = params.append("apuestas["+i+"][win]", betList[i].win.toString());
+    }
     return this.http.post(this.server, params)
   }
 }

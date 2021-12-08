@@ -20,7 +20,8 @@ export class BarTopComponent implements OnInit {
   @Input("wagerList") wagerList: any[];
   @Input("raceCourseList") raceCourseList: any[];
 
-
+  saveBetButton: boolean = true;
+  finalizeBetButton: boolean = false;
 
   constructor(public betsService: BetsService,
     private authService: AuthenticationService,
@@ -57,7 +58,6 @@ export class BarTopComponent implements OnInit {
   }
 
   save() {
-    debugger;
     console.log(this.authService.storeUser)
     console.log(this.betsService.oddSelectedList)
     if (this.betsService.oddSelectedList.filter(x => x.bet == undefined).length > 0) {
@@ -107,10 +107,13 @@ export class BarTopComponent implements OnInit {
         this.betsService.saveBet(this.agentId, clientId, this.betsService.oddSelectedList[0].id, 1, betList)
           .subscribe(
             (resp: any) => {
+              debugger;
               console.log(resp);
               if (resp.success == true) {
                 this.generalFunctionsService.notifications('Se ha guardado la apuesta exitosamente', 'Guardado', 'success');
-              }else{
+                this.saveBetButton = false;
+                this.finalizeBetButton = true;
+              } else {
                 this.generalFunctionsService.notifications('No se puedo guardar la apuesta', 'Error', 'danger');
               }
               //this.raceCourseList = resp.hipodromos;
@@ -123,9 +126,68 @@ export class BarTopComponent implements OnInit {
             }
           );
       }
-
     }
+  }
+
+  finalizeBet() {
+    var betList: any[] = []
+    this.betsService.oddSelectedList.forEach(odd => {
+      var bet: any = {
+        odd_id: odd.id,
+        //date: this.datePipe.transform(new Date(), "dd/MM/yyyy"),
+        us: odd.us,
+        type: 1,
+        //ticket_id: 0,
+        //odd_id: odd.id,
+        //race_id: odd.race_id,
+        //horse_id: odd.horse_id,
+        //value: 100,
+        risk: odd.bet,
+        value: odd.value,
+        win: 100,
+        //amount: parseFloat(odd.bet) + 100,
+        //type: 1,
+        //orden: 0,
+        //status: 0,
 
 
+
+        /* odd_id: odd.id,
+        odd_type_id: 0,
+        total: 0,
+        zone_id: 0,
+        hipodromo_id: odd.hipodromo_id,
+        odd_id: 0,
+        bookmaker_id: odd.bookmaker_id,
+        modo: odd.modo,
+        modo_name: 0,
+        name: odd.name,
+        us: odd.us,
+        ajuste: odd.ajuste, */
+      }
+      betList.push(bet);
+    });
+    var token = this.authService.storeUser.token;
+    var clientId = Object.keys(this.authService.storeUser).length == 0 ? 0 : this.authService.storeUser.id;
+    this.betsService.saveTicket(this.agentId, clientId, token, betList)
+      .subscribe(
+        (resp: any) => {
+          console.log(resp);
+          if (resp.success == true) {
+            this.generalFunctionsService.notifications('Se ha finalizado la apuesta exitosamente', 'Guardado', 'success');
+            this.betsService.showModal = false;
+            this.betsService.oddSelectedList = [];
+          } else {
+            this.generalFunctionsService.notifications('No se puedo finalizar la apuesta', 'Error', 'danger');
+          }
+          //this.raceCourseList = resp.hipodromos;
+        },
+        error => {
+          const errorMessage = <any>error;
+          if (errorMessage != null) {
+            //this.generalFunctionsService.notifications('Usuario no válido, verifique sus credenciales', 'danger');\
+          }
+        }
+      );
   }
 }
