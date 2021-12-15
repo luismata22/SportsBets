@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { createPopper } from '@popperjs/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { BetsService } from 'src/app/services/bets.service';
 
@@ -15,11 +16,11 @@ export class HorseBetComponent implements OnInit {
   classList: any[] = [];
   raceCourseList: any[] = [];
   odds: any[] = [];
-  races: any[] = [];
+  horses: any[] = [];
   wagerList: any[] = [];
   agentId: number = 0;
   clientId: number = 0;
-  
+  expanded: boolean = false;
 
   constructor(private router: Router,
     private _authService: AuthenticationService,
@@ -67,7 +68,9 @@ export class HorseBetComponent implements OnInit {
   }
 
   selectRacer(racer: number) {
-    this.racerSelected = racer;
+    debugger;
+    this.horses = this.betsService.raceList.find(x => x.id == racer).horses;
+    /* this.racerSelected = racer;
     this.betsService.charge(this.agentId, this.clientId, this.betsService.zoneSelected, this.betsService.classSelected, this.betsService.raceCourseSelected, racer, this.betsService.fechaSelected)
     .subscribe(
       (resp: any) => {
@@ -80,7 +83,7 @@ export class HorseBetComponent implements OnInit {
           //this.generalFunctionsService.notifications('Usuario no válido, verifique sus credenciales', 'danger');\
         }
       }
-    );
+    ); */
   }
 
   charge(agentId: number) {
@@ -88,23 +91,24 @@ export class HorseBetComponent implements OnInit {
       .subscribe(
         (resp: any) => {
           console.log(resp);
-          //this.raceCourseList = resp.hipodromos;
-          var odds = resp.odds;
-          this.races = resp.races;
+          //var odds = resp.odds;
+          this.betsService.raceList = resp.races;
           //debugger;
           if (this.betsService.oddSelectedList.length > 0) {
             this.betsService.showModal = !this.betsService.showModal;
             this.betsService.oddSelectedList.forEach(odd => {
-              if (odds.filter(x => x.id == odd.id).length > 0) {
-                odds.find(x => x.id == odd.id).checked = true;
-              }else{
-                odds.find(x => x.id == odd.id).checked = false;
-              }
+              //if (odds.filter(x => x.id == odd.id).length > 0) {
+                //odds.find(x => x.id == odd.id).checked = true;
+              //}else{
+                //odds.find(x => x.id == odd.id).checked = false;
+              //}
             });
-            this.odds = odds;
+            //this.odds = odds;
           }else{
-            this.odds.map(x => x.checked = false)
-            this.odds = odds;
+            //this.odds.map(x => x.checked = false)
+            //this.odds = odds;
+            this.betsService.race = resp.races[0];
+            this.betsService.horseList = resp.races[0].horses;
           }
         },
         error => {
@@ -116,11 +120,12 @@ export class HorseBetComponent implements OnInit {
       );
   }
 
-  changeSelected(oddSelected: any, event) {
+  changeSelected(oddSelected: any, horseSelected: any, event) {
     if (event.target.checked === true) {
       console.log(this.betsService.oddSelectedList)
+      oddSelected.horse = horseSelected;
       this.betsService.oddSelectedList.push(
-          oddSelected
+        oddSelected
       );
     }else{
       this.betsService.oddSelectedList = this.betsService.oddSelectedList.filter(x => x.id != oddSelected.id)

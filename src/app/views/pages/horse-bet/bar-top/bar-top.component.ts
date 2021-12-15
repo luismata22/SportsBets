@@ -20,6 +20,7 @@ export class BarTopComponent implements OnInit {
   @Input("wagerList") wagerList: any[];
   @Input("raceCourseList") raceCourseList: any[];
 
+  raceSelected:number= 0;
   saveBetButton: boolean = true;
   finalizeBetButton: boolean = false;
 
@@ -71,7 +72,8 @@ export class BarTopComponent implements OnInit {
         var betList: any[] = []
         this.betsService.oddSelectedList.forEach(odd => {
           var bet: any = {
-            id: 0,
+            id: odd.id,
+            wager_id: 1,
             //date: this.datePipe.transform(new Date(), "dd/MM/yyyy"),
             time: this.datePipe.transform(new Date(), "HH:mm"),
             //ticket_id: 0,
@@ -104,7 +106,7 @@ export class BarTopComponent implements OnInit {
           betList.push(bet);
         });
         var clientId = Object.keys(this.authService.storeUser).length == 0 ? 0 : this.authService.storeUser.id;
-        this.betsService.saveBet(this.agentId, clientId, this.betsService.oddSelectedList[0].id, 1, betList)
+        this.betsService.saveBet(this.agentId, clientId, betList)
           .subscribe(
             (resp: any) => {
               debugger;
@@ -189,5 +191,10 @@ export class BarTopComponent implements OnInit {
           }
         }
       );
+  }
+
+  changeRace(){
+    this.betsService.horseList = this.betsService.raceList.find(x => x.id == this.raceSelected).horses;
+    this.betsService.race = this.betsService.raceList.find(x => x.id == this.raceSelected)
   }
 }

@@ -39,6 +39,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthenticationService } from './services/authentication.service';
 import { HttpconfigInterceptor } from './interceptors/httpconfig.interceptor';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { HttpconfigInterceptor } from './interceptors/httpconfig.interceptor';
     HttpClientModule,
     DataTablesModule,
     BrowserAnimationsModule,
+    AccordionModule.forRoot(),
     ToastrModule.forRoot(),
   ],
   providers: [

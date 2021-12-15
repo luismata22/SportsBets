@@ -27,7 +27,9 @@ export class BetsService {
   fechaSelected: string = "Todos";
   raceSelected:number= 0;
   oddSelectedList: any[] = [];
-
+  raceList: any[] = [];
+  horseList: any[] = [];
+  race: any;
   showModal = false;
   
   constructor(private http: HttpClient) { }
@@ -96,16 +98,17 @@ export class BetsService {
     return this.http.post(this.server, params)
   }
 
-  saveBet(agentId: number, clientId: number, oddId: string, wagerId: number, betList: any[]){
+  saveBet(agentId: number, clientId: number, betList: any[]){
     let params: HttpParams = new HttpParams();
     params = params.append("accion", "agregar_apuesta");
     params = params.append("agent_id", agentId.toString());
     //params = params.append("client_id", clientId.toString());
-    params = params.append("odd_id", oddId.toString());
-    params = params.append("wager_id", wagerId.toString());
+    //params = params.append("odd_id", oddId.toString());
+    //params = params.append("wager_id", wagerId.toString());
     //params = params.append("apuestas", total.toString());
     for (let i = 0; i < betList.length; i++) {
       params = params.append("apuestas["+i+"][id]", betList[i].id.toString());
+      params = params.append("apuestas["+i+"][wager_id]", betList[i].wager_id.toString());
       params = params.append("apuestas["+i+"][time]", betList[i].time.toString());
       params = params.append("apuestas["+i+"][risk]", betList[i].risk.toString());
       params = params.append("apuestas["+i+"][win]", betList[i].win.toString());
